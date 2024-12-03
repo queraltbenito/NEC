@@ -20,7 +20,7 @@ class NeuralNet:
         self.val_errors = []
         self.h = [np.zeros(n) for n in layers]
         self.xi = [np.zeros(n) for n in layers]
-        self.w = [np.zeros((1, 1))] + [np.random.randn(layers[i], layers[i-1]) * np.sqrt(2 / layers[i-1]) for i in range(1, self.L)]
+        self.w = [np.zeros((1, 1))] + [np.random.uniform(-1.0, 1.0, (layers[i], layers[i-1])) * np.sqrt(1 / layers[i-1]) for i in range(1, self.L)]
         self.theta = [np.zeros(n) for n in layers]
         self.delta = [np.zeros(n) for n in layers]
         self.d_w = [np.zeros_like(self.w[i]) for i in range(self.L)]
@@ -148,7 +148,7 @@ y = train_data['CO2 Emissions(g/km)'].values
 layers = [X.shape[1], 9, 5, 1]  # Network architecture: input layer size based on data, 9 and 5 hidden, 1 output
 learning_rate = 0.01
 momentum = 0.9
-activation_function = 'relu'
+activation_function = 'sigmoid'
 epochs = 30
 
 # Initialize and train the model
