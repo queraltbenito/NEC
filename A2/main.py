@@ -1,4 +1,5 @@
 from chromosome_representation import generate_chromosome_items, generate_chromosome
+from fitness import compute_duration
 
 def read_data(path):
     with open(path, 'r') as file:
@@ -26,3 +27,6 @@ if __name__ == "__main__":
     population_size = 5
     population = [generate_chromosome(items) for _ in range(population_size)]
     print(population)
+
+    duration = compute_duration(population[0], j, m, tasks)
+    print(duration)
