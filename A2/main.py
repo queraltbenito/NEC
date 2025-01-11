@@ -17,16 +17,16 @@ def read_data(path):
 
 if __name__ == "__main__":
     path = "./dataset1.txt"
-    j, m, tasks = read_data(path)
+    num_jobs, num_machines, tasks = read_data(path)
     
-    print(j)
-    print(m)
+    print(num_jobs)
+    print(num_machines)
     print(tasks)
 
     items = generate_chromosome_items(tasks)
-    population_size = 5
-    population = [generate_chromosome(items) for _ in range(population_size)]
+    population_size = 1
+    population = [generate_chromosome(items, num_jobs) for _ in range(population_size)]
     print(population)
 
-    duration = compute_duration(population[0], j, m, tasks)
+    duration = compute_duration(population[0], num_jobs, num_machines, tasks)
     print(duration)
