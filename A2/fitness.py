@@ -6,17 +6,17 @@ def processing_time_item(job_id, task_id, tasks):
 
 def compute_duration(chromosome, num_jobs, num_machines, tasks):
     f = 0
+    done_task = [0 for _ in range(num_jobs)]
     completition_jobs = [0 for _ in range(num_jobs)]
     availability_machines = [0 for _ in range(num_machines)]
     
-    for item in chromosome:
-        job_id, task_id = item.split('-')
-        job_id = int(job_id)
-        task_id = int(task_id)
+    for job_id in chromosome:
+        task_id = done_task[job_id]
+        done_task[job_id] += 1
 
         m = machine_item(job_id, task_id, tasks)
         p = processing_time_item(job_id, task_id, tasks)
-        print(completition_jobs, availability_machines, item, m, p, f)
+        print(completition_jobs, availability_machines, job_id, task_id, m, p, f)
 
         t = max(completition_jobs[job_id], availability_machines[m]) + p
         completition_jobs[job_id] = t
