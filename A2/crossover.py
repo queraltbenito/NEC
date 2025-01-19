@@ -1,6 +1,6 @@
 import random
 
-def create_chill(child, items, counter_tasks_job):
+def create_child(child, items, counter_tasks_job):
     counters = [0 for _ in range(len(counter_tasks_job))]
     item_id = 0
     for (position, job_id) in enumerate(child):
@@ -27,13 +27,13 @@ def one_point_crossover(parent1, parent2, counter_tasks_job):
     child1[0:crossover_point] = parent1[0:crossover_point]
     items_child1 = parent2[crossover_point:]
     items_child1.extend(parent2[0:crossover_point])
-    child1 = create_chill(child1, items_child1, counter_tasks_job)
+    child1 = create_child(child1, items_child1, counter_tasks_job)
     
     child2 = [None for _ in range(size_child)]
     child2[0:crossover_point] = parent2[0:crossover_point]
     items_child2 = parent1[crossover_point:]
     items_child2.extend(parent1[0:crossover_point])
-    child2= create_chill(child2, items_child2, counter_tasks_job)
+    child2= create_child(child2, items_child2, counter_tasks_job)
     
     return child1, child2
 
@@ -48,7 +48,7 @@ def two_point_crossover(parent1, parent2, counter_tasks_job):
     items_child1 = parent2[crossover_point1:crossover_point2]
     items_child1.extend(parent2[0:crossover_point1])
     items_child1.extend(parent2[crossover_point2:])
-    child1 = create_chill(child1, items_child1, counter_tasks_job)
+    child1 = create_child(child1, items_child1, counter_tasks_job)
     
     child2 = [None for _ in range(size_child)]
     child2[0:crossover_point1] = parent2[0:crossover_point1]
@@ -56,6 +56,6 @@ def two_point_crossover(parent1, parent2, counter_tasks_job):
     items_child2 = parent1[crossover_point1:crossover_point2]
     items_child2.extend(parent1[0:crossover_point1])
     items_child2.extend(parent1[crossover_point2:])
-    child2= create_chill(child2, items_child2, counter_tasks_job)
+    child2= create_child(child2, items_child2, counter_tasks_job)
     
     return child1, child2
