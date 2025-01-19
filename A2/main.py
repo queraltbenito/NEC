@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
     # Initialize population P
     # Evaluate fitness of all individuals in P
-    items = generate_chromosome_items(tasks)
+    counter_tasks_job, items = generate_chromosome_items(tasks)
     population_size = 10
     population = []
     for _ in range(population_size):
